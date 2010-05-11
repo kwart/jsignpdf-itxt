@@ -2,7 +2,7 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!-- iText, a JAVA - PDF library                                      -->
-<!-- $Id: compile.xml,v 1.2 2010/05/11 20:15:47 kwart Exp $         -->
+<!-- $Id: compile.xml,v 1.3 2010/05/11 20:25:23 kwart Exp $         -->
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <project name="iText.compile" default="help">
@@ -10,6 +10,10 @@
 	<property file="${user.home}/.ant.properties" />
 	<property file=".ant.properties" />
 	
+	<filterset id="itext.filterset">
+		<filter token="RELEASENUMBER" value="${releasenumber}"/>
+	</filterset>
+
 	<path id="itext.classpath">
 	    <pathelement location="${itext.bin}"/>
 		<!-- jars needed for iText (core) -->
@@ -42,7 +46,14 @@
 
     <target name="compile" description="--> compiles the iText code">
         <mkdir dir="${itext.bin}" />
-        <javac source="${itext.jdk.core}" target="${itext.jdk.core}" srcdir="${itext.src}/core" destdir="${itext.bin}">
+        <mkdir dir="${itext.core.src}" />
+		<copy todir="${itext.core.src}">
+			<fileset dir="${itext.src}/core">
+				<include name="**"/>
+			</fileset>
+			<filterset refid="itext.filterset"/>
+		</copy>
+        <javac source="${itext.jdk.core}" target="${itext.jdk.core}" srcdir="${itext.core.src}" destdir="${itext.bin}">
     	<classpath refid="itext.classpath"/>
     	</javac>
     </target>

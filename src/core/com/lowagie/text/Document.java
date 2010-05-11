@@ -1,5 +1,5 @@
 /*
- * $Id: Document.java,v 1.2 2010/05/11 20:15:47 kwart Exp $
+ * $Id: Document.java,v 1.3 2010/05/11 20:25:23 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 by Bruno Lowagie.
  *
@@ -106,13 +106,13 @@ public class Document implements DocListener {
 	 * 
 	 * @since 2.1.6
 	 */
-	private static final String ITEXT = "JSignPdf";
+	private static final String ITEXT = "JSignPdf-itxt";
 	/**
 	 * Release Nr
 	 * 
 	 * @since 2.1.6
 	 */
-	private static final String RELEASE = "@JSIGNPDF_VERSION@";
+	private static final String RELEASE = "@RELEASENUMBER@";
 
 	/** Version info. */
 	private static final String ITEXT_VERSION = ITEXT + " " + RELEASE;
