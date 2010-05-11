@@ -2,7 +2,7 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!-- iText, a JAVA - PDF library                                      -->
-<!-- $Id: compile.xml,v 1.1 2010/04/14 17:50:30 kwart Exp $         -->
+<!-- $Id: compile.xml,v 1.2 2010/05/11 20:15:47 kwart Exp $         -->
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <project name="iText.compile" default="help">
@@ -100,7 +100,7 @@
         <jar jarfile="${itext.jar}" basedir="${itext.bin}">
             <manifest>
                 <attribute name="Main-Class" value="com.lowagie.tools.ToolboxAvailable"/>
-                <!-- <attribute name="Class-Path" value="iText-toolbox.jar iText-toolbox-${releasenumber}.jar ${lib.bcmail} ${lib.bcprov} ${lib.bctsp}"/> -->
+                <!-- <attribute name="Class-Path" value="${itext.jar.base}-toolbox.jar ${itext.jar.base}-toolbox-${releasenumber}.jar ${lib.bcmail} ${lib.bcprov} ${lib.bctsp}"/> -->
             </manifest>
         </jar>
     </target>
@@ -132,7 +132,7 @@
 		<jar destfile="${itext.rups.jar}" basedir="${itext.rups.bin}" includes="**/*.class, **/*.png">
 		    <manifest>
                 <attribute name="Main-Class" value="com.lowagie.rups.Rups"/>
-                <attribute name="Class-Path" value="iText-${releasenumber}.jar ${lib.pdf-renderer} ${lib.bcmail} ${lib.bcprov} ${lib.bctsp} ${lib.dom4j}"/>
+                <attribute name="Class-Path" value="${itext.jar.base}-${releasenumber}.jar ${lib.pdf-renderer} ${lib.bcmail} ${lib.bcprov} ${lib.bctsp} ${lib.dom4j}"/>
             </manifest>
 		</jar>
 	</target>
@@ -152,7 +152,7 @@
 		<jar destfile="${itext.toolbox.jar}" basedir="${itext.toolbox.bin}" includes="**/*.class, **/*.png, **/*.txt, **/*.gif">
 		    <manifest>
                 <attribute name="Main-Class" value="com.lowagie.toolbox.Toolbox"/>
-                <attribute name="Class-Path" value="iText-${releasenumber}.jar ${lib.bcmail} ${lib.bctsp} ${lib.bcprov}"/>
+                <attribute name="Class-Path" value="${itext.jar.base}-${releasenumber}.jar ${lib.bcmail} ${lib.bctsp} ${lib.bcprov}"/>
             </manifest>
 		</jar>
 	</target>

@@ -2,7 +2,7 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!-- iText, a JAVA - PDF library                                      -->
-<!-- $Id: release.xml,v 1.1 2010/04/14 17:50:30 kwart Exp $         -->
+<!-- $Id: release.xml,v 1.2 2010/05/11 20:15:47 kwart Exp $         -->
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <project name="iText.release" default="help">
@@ -84,7 +84,7 @@
 							
 	<target name="src.jar" description="--> makes a jar file with the source code">
 		<mkdir dir="${itext.dist}"/>
-		<jar destfile="${itext.dist}/iText-${releasenumber}-sources.jar" basedir="${itext.src}" includes="${src.types}" />
+		<jar destfile="${itext.dist}/${itext.jar.base}-${releasenumber}-sources.jar" basedir="${itext.src}" includes="${src.types}" />
 	</target>
 	
 	<target name="archive.src" depends="src-with-libs.zip, src.zip, src-with-libs.tar.gz, src.tar.gz, src.jar" description="--> archives the source code" />
@@ -96,27 +96,27 @@
 	<target name="release.sf14" description="--> makes a complete iText release ready to publish on SourceForge">
 		<mkdir dir="${itext.sf}"/>
 		<copy file="${itext.jar}" todir="${itext.dist}" overwrite="yes" />
-		<copy file="${itext.jar}" tofile="${itext.dist}/iText-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.jar}" tofile="${itext.sf}/iText-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.jar}" tofile="${itext.dist}/${itext.jar.base}-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.jar}" tofile="${itext.sf}/${itext.jar.base}-${releasenumber}.jar" overwrite="yes"/>
 		<copy file="${itext.rtf.jar}" todir="${itext.dist}" overwrite="yes" />
-		<copy file="${itext.rtf.jar}" tofile="${itext.dist}/iText-rtf-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.rtf.jar}" tofile="${itext.sf}/iText-rtf-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.dist}/src.zip" tofile="${itext.sf}/iText-src-${releasenumber}.zip" overwrite="yes"/>
-		<copy file="${itext.dist}/src-with-libs.zip" tofile="${itext.sf}/iText-src-with-libs-${releasenumber}.zip" overwrite="yes"/>
-		<copy file="${itext.dist}/src.tar.gz" tofile="${itext.sf}/iText-src-${releasenumber}.tar.gz" overwrite="yes"/>
-		<copy file="${itext.dist}/src-with-libs.tar.gz" tofile="${itext.sf}/iText-src-with-libs-${releasenumber}.tar.gz" overwrite="yes"/>
-		<copy file="${itext.dist}/iText-${releasenumber}-sources.jar" tofile="${itext.sf}/iText-${releasenumber}-sources.jar" overwrite="yes"/>
+		<copy file="${itext.rtf.jar}" tofile="${itext.dist}/${itext.jar.base}-rtf-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.rtf.jar}" tofile="${itext.sf}/${itext.jar.base}-rtf-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.dist}/src.zip" tofile="${itext.sf}/${itext.jar.base}-src-${releasenumber}.zip" overwrite="yes"/>
+		<copy file="${itext.dist}/src-with-libs.zip" tofile="${itext.sf}/${itext.jar.base}-src-with-libs-${releasenumber}.zip" overwrite="yes"/>
+		<copy file="${itext.dist}/src.tar.gz" tofile="${itext.sf}/${itext.jar.base}-src-${releasenumber}.tar.gz" overwrite="yes"/>
+		<copy file="${itext.dist}/src-with-libs.tar.gz" tofile="${itext.sf}/${itext.jar.base}-src-with-libs-${releasenumber}.tar.gz" overwrite="yes"/>
+		<copy file="${itext.dist}/${itext.jar.base}-${releasenumber}-sources.jar" tofile="${itext.sf}/${itext.jar.base}-${releasenumber}-sources.jar" overwrite="yes"/>
 	</target>
 	
 	<target name="release.sf16" description="--> makes a complete iText release ready to publish on SourceForge">
 		<mkdir dir="${itext.sf}"/>
-		<copy file="${itext.dist}/docs.tar.gz" tofile="${itext.sf}/iText-docs-${releasenumber}.tar.gz" overwrite="yes"/>
+		<copy file="${itext.dist}/docs.tar.gz" tofile="${itext.sf}/${itext.jar.base}-docs-${releasenumber}.tar.gz" overwrite="yes"/>
 		<copy file="${itext.rups.jar}" todir="${itext.dist}" overwrite="yes" />
 		<copy file="${itext.toolbox.jar}" todir="${itext.dist}" overwrite="yes" />
-		<copy file="${itext.rups.jar}" tofile="${itext.dist}/iText-rups-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.rups.jar}" tofile="${itext.sf}/iText-rups-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.toolbox.jar}" tofile="${itext.dist}/iText-toolbox-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.toolbox.jar}" tofile="${itext.sf}/iText-toolbox-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.rups.jar}" tofile="${itext.dist}/${itext.jar.base}-rups-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.rups.jar}" tofile="${itext.sf}/${itext.jar.base}-rups-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.toolbox.jar}" tofile="${itext.dist}/${itext.jar.base}-toolbox-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.toolbox.jar}" tofile="${itext.sf}/${itext.jar.base}-toolbox-${releasenumber}.jar" overwrite="yes"/>
 	</target>
 	
 	<target name="release.maven" description="--> makes a bundle ready to publish for Maven">
@@ -125,36 +125,36 @@
 		<replace file="${itext.maven}/pom.xml" token="releasenumber" value="${releasenumber}"/>
 		<replace file="${itext.maven}/pom.xml" token="bc.jdk" value="${bc.jdk}"/>
 		<replace file="${itext.maven}/pom.xml" token="bc.version" value="${bc.version}"/>
-		<copy file="${itext.dist}/iText-${releasenumber}.jar" tofile="${itext.maven}/itext-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.dist}/iText-rtf-${releasenumber}.jar" tofile="${itext.maven}/itext-rtf-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.dist}/iText-rups-${releasenumber}.jar" tofile="${itext.maven}/itext-rups-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.dist}/iText-toolbox-${releasenumber}.jar" tofile="${itext.maven}/itext-toolbox-${releasenumber}.jar" overwrite="yes"/>
-		<copy file="${itext.dist}/iText-${releasenumber}-sources.jar" tofile="${itext.maven}/itext-${releasenumber}-sources.jar" overwrite="yes"/>
-		<jar destfile="${itext.maven}/itext-${releasenumber}-javadoc.jar">
+		<copy file="${itext.dist}/${itext.jar.base}-${releasenumber}.jar" tofile="${itext.maven}/${itext.jar.base}-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.dist}/${itext.jar.base}-rtf-${releasenumber}.jar" tofile="${itext.maven}/${itext.jar.base}-rtf-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.dist}/${itext.jar.base}-rups-${releasenumber}.jar" tofile="${itext.maven}/${itext.jar.base}-rups-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.dist}/${itext.jar.base}-toolbox-${releasenumber}.jar" tofile="${itext.maven}/${itext.jar.base}-toolbox-${releasenumber}.jar" overwrite="yes"/>
+		<copy file="${itext.dist}/${itext.jar.base}-${releasenumber}-sources.jar" tofile="${itext.maven}/${itext.jar.base}-${releasenumber}-sources.jar" overwrite="yes"/>
+		<jar destfile="${itext.maven}/${itext.jar.base}-${releasenumber}-javadoc.jar">
 			<fileset dir="${itext.docs}"/>
 		</jar>
-		<jar destfile="${itext.maven}/itext-${releasenumber}-bundle.jar">
+		<jar destfile="${itext.maven}/${itext.jar.base}-${releasenumber}-bundle.jar">
 			<fileset dir="${itext.maven}">
 				<include name="pom.xml" />
-				<include name="itext-${releasenumber}.jar" />
-				<include name="itext-toolbox-${releasenumber}.jar" />
-				<include name="itext-${releasenumber}-sources.jar" />
-				<include name="itext-${releasenumber}-javadoc.jar" />
+				<include name="${itext.jar.base}-${releasenumber}.jar" />
+				<include name="${itext.jar.base}-toolbox-${releasenumber}.jar" />
+				<include name="${itext.jar.base}-${releasenumber}-sources.jar" />
+				<include name="${itext.jar.base}-${releasenumber}-javadoc.jar" />
 			</fileset>
 		</jar>
-		<replace file="${itext.maven}/pom.xml" token="artifactId>itext" value="artifactId>itext-rtf"/>
+		<replace file="${itext.maven}/pom.xml" token="artifactId>itext" value="artifactId>${itext.jar.base}-rtf"/>
 		<replace file="${itext.maven}/pom.xml" token="PDF library" value="PDF library (rtf package)"/>
-		<jar destfile="${itext.maven}/itext-rtf-${releasenumber}-bundle.jar">
+		<jar destfile="${itext.maven}/${itext.jar.base}-rtf-${releasenumber}-bundle.jar">
 			<fileset dir="${itext.maven}">
 				<include name="pom.xml" />
-				<include name="itext-rtf-${releasenumber}.jar" />
+				<include name="${itext.jar.base}-rtf-${releasenumber}.jar" />
 			</fileset>
 		</jar>
 		<replace file="${itext.maven}/pom.xml" token="rtf" value="rups"/>
-		<jar destfile="${itext.maven}/itext-rups-${releasenumber}-bundle.jar">
+		<jar destfile="${itext.maven}/${itext.jar.base}-rups-${releasenumber}-bundle.jar">
 			<fileset dir="${itext.maven}">
 				<include name="pom.xml" />
-				<include name="itext-rups-${releasenumber}.jar" />
+				<include name="${itext.jar.base}-rups-${releasenumber}.jar" />
 			</fileset>
 		</jar>
 	</target>
@@ -206,9 +206,9 @@
     <target name="release.jnlp" depends="unsign.bcmail, unsign.bcprov, unsign.bctsp, keystore">
 		<copy file="${itext.src}/jnlp/rups.jnlp" tofile="${itext.jnlp}/rups.jnlp" overwrite="yes"/>
 		<copy file="${itext.src}/jnlp/toolbox.jnlp" tofile="${itext.jnlp}/toolbox.jnlp" overwrite="yes"/>
-		<copy file="${itext.rups.jar}" tofile="${itext.jnlp}/iText-rups.jar" overwrite="yes"/>
-		<copy file="${itext.toolbox.jar}" tofile="${itext.jnlp}/iText-toolbox.jar" overwrite="yes"/>
-		<copy file="${itext.jar}" tofile="${itext.jnlp}/iText.jar" overwrite="yes"/>
+		<copy file="${itext.rups.jar}" tofile="${itext.jnlp}/${itext.jar.base}-rups.jar" overwrite="yes"/>
+		<copy file="${itext.toolbox.jar}" tofile="${itext.jnlp}/${itext.jar.base}-toolbox.jar" overwrite="yes"/>
+		<copy file="${itext.jar}" tofile="${itext.jnlp}/${itext.jar.base}.jar" overwrite="yes"/>
 		<copy file="${itext.lib}/dom4j-1.6.1.jar" tofile="${itext.jnlp}/dom4j-1.6.1.jar" overwrite="yes"/>
 		<copy file="${itext.lib}/pdf-renderer.jar" tofile="${itext.jnlp}/pdf-renderer.jar" overwrite="yes"/>
         <signjar
@@ -240,21 +240,21 @@
             storetype="${itext.keystore.storetype}"
         />
         <signjar
-            jar="${itext.jnlp}/iText.jar"
+            jar="${itext.jnlp}/${itext.jar.base}.jar"
             keystore="${itext.keystore.filename}"
             storepass="${itext.keystore.password}"
             alias="${itext.keystore.alias}"
             storetype="${itext.keystore.storetype}"
         />
         <signjar
-            jar="${itext.jnlp}/iText-rups.jar"
+            jar="${itext.jnlp}/${itext.jar.base}-rups.jar"
             keystore="${itext.keystore.filename}"
             storepass="${itext.keystore.password}"
             alias="${itext.keystore.alias}"
             storetype="${itext.keystore.storetype}"
         />
         <signjar
-            jar="${itext.jnlp}/iText-toolbox.jar"
+            jar="${itext.jnlp}/${itext.jar.base}-toolbox.jar"
             keystore="${itext.keystore.filename}"
             storepass="${itext.keystore.password}"
             alias="${itext.keystore.alias}"
