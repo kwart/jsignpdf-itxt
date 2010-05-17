@@ -1,5 +1,5 @@
 /*
- * $Id: Document.java,v 1.3 2010/05/11 20:25:23 kwart Exp $
+ * $Id: Document.java,v 1.4 2010/05/17 10:47:28 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 by Bruno Lowagie.
  *
@@ -106,7 +106,7 @@ public class Document implements DocListener {
 	 * 
 	 * @since 2.1.6
 	 */
-	private static final String ITEXT = "JSignPdf-itxt";
+	private static final String PRODUCT = "@PRODUCT_NAME@";
 	/**
 	 * Release Nr
 	 * 
@@ -115,7 +115,7 @@ public class Document implements DocListener {
 	private static final String RELEASE = "@RELEASENUMBER@";
 
 	/** Version info. */
-	private static final String ITEXT_VERSION = ITEXT + " " + RELEASE;
+	private static final String PRODUCT_VERSION = PRODUCT + " " + RELEASE;
 
 	/**
 	 * Allows the pdf documents to be produced without compression for debugging
@@ -785,7 +785,7 @@ public class Document implements DocListener {
 	 * @since 2.1.6
 	 */
 	public static final String getProduct() {
-		return ITEXT;
+		return PRODUCT;
 	}
 
 	/**
@@ -806,7 +806,7 @@ public class Document implements DocListener {
 	 * @return iText version
 	 */
 	public static final String getVersion() {
-		return ITEXT_VERSION;
+		return PRODUCT_VERSION;
 	}
 
 	/**
