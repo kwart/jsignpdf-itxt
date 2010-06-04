@@ -1,5 +1,5 @@
 /*
- * $Id: BarcodeInter25.java,v 1.1 2010/04/14 17:50:31 kwart Exp $
+ * $Id: BarcodeInter25.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
  *
  * Copyright 2002-2006 by Paulo Soares.
  *
@@ -49,7 +49,7 @@
 package com.lowagie.text.pdf;
 
 import java.awt.Canvas;
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.awt.Image;
 import java.awt.image.MemoryImageSource;
 

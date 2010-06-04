@@ -50,7 +50,7 @@
 
 package com.lowagie.text.html.simpleparser;
 
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;

@@ -1,5 +1,5 @@
 /*
- * $Id: PdfAnnotation.java,v 1.1 2010/04/14 17:50:31 kwart Exp $
+ * $Id: PdfAnnotation.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 Bruno Lowagie
  *
@@ -49,7 +49,7 @@
 
 package com.lowagie.text.pdf;
 
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.io.IOException;
 import java.util.HashMap;
 

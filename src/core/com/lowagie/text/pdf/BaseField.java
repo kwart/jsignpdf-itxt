@@ -47,7 +47,7 @@
 
 package com.lowagie.text.pdf;
 
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;

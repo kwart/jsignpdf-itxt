@@ -1,5 +1,5 @@
 /*
- * $Id: Markup.java,v 1.1 2010/04/14 17:50:40 kwart Exp $
+ * $Id: Markup.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
  *
  * Copyright 2001, 2002 by Bruno Lowagie.
  *
@@ -52,7 +52,7 @@
 
 package com.lowagie.text.html;
 
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.util.Properties;
 import java.util.StringTokenizer;
 

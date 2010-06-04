@@ -1,5 +1,5 @@
 /*
- * $Id: InputMeta.java,v 1.1 2010/04/14 17:50:46 kwart Exp $
+ * $Id: InputMeta.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
  *
  * Copyright 2001, 2002 Paulo Soares
  *
@@ -49,7 +49,7 @@
 
 package com.lowagie.text.pdf.codec.wmf;
 
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 

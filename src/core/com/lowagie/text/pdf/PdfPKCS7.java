@@ -132,11 +132,11 @@ public class PdfPKCS7 {
 	private String digestAlgorithm, digestEncryptionAlgorithm;
 	private Signature sig;
 	// private transient PrivateKey privKey;
-	private byte RSAdata[];
+	private byte rsaData[];
 	private boolean verified;
 	private boolean verifyResult;
 	private byte externalDigest[];
-	private byte externalRSAdata[];
+	private byte externalRsaData[];
 	private String provider;
 
 	private static final String ID_PKCS7_DATA = "1.2.840.113549.1.7.1";
@@ -435,10 +435,11 @@ public class PdfPKCS7 {
 			crls = cl.engineReadAll();
 
 			// the possible ID_PKCS7_DATA
-			ASN1Sequence rsaData = (ASN1Sequence) content.getObjectAt(2);
-			if (rsaData.size() > 1) {
-				DEROctetString rsaDataContent = (DEROctetString) ((DERTaggedObject) rsaData.getObjectAt(1)).getObject();
-				RSAdata = rsaDataContent.getOctets();
+			ASN1Sequence rsaDataAsn1 = (ASN1Sequence) content.getObjectAt(2);
+			if (rsaDataAsn1.size() > 1) {
+				DEROctetString rsaDataContent = (DEROctetString) ((DERTaggedObject) rsaDataAsn1.getObjectAt(1))
+						.getObject();
+				rsaData = rsaDataContent.getOctets();
 			}
 
 			// the signerInfos
@@ -515,7 +516,7 @@ public class PdfPKCS7 {
 					this.timeStampToken = new TimeStampToken(contentInfo);
 				}
 			}
-			if (RSAdata != null || digestAttr != null) {
+			if (rsaData != null || digestAttr != null) {
 				if (provider == null || provider.startsWith("SunPKCS11"))
 					messageDigest = MessageDigest.getInstance(getHashAlgorithm());
 				else
@@ -596,7 +597,7 @@ public class PdfPKCS7 {
 			}
 		}
 		if (hasRSAdata) {
-			RSAdata = new byte[0];
+			rsaData = new byte[0];
 			if (provider == null || provider.startsWith("SunPKCS11"))
 				messageDigest = MessageDigest.getInstance(getHashAlgorithm());
 			else
@@ -627,7 +628,7 @@ public class PdfPKCS7 {
 	 *             on error
 	 */
 	public void update(byte[] buf, int off, int len) throws SignatureException {
-		if (RSAdata != null || digestAttr != null)
+		if (rsaData != null || digestAttr != null)
 			messageDigest.update(buf, off, len);
 		else
 			sig.update(buf, off, len);
@@ -646,13 +647,13 @@ public class PdfPKCS7 {
 			return verifyResult;
 		if (sigAttr != null) {
 			sig.update(sigAttr);
-			if (RSAdata != null) {
+			if (rsaData != null) {
 				byte msd[] = messageDigest.digest();
 				messageDigest.update(msd);
 			}
 			verifyResult = (Arrays.equals(messageDigest.digest(), digestAttr) && sig.verify(digest));
 		} else {
-			if (RSAdata != null)
+			if (rsaData != null)
 				sig.update(messageDigest.digest());
 			verifyResult = sig.verify(digest);
 		}
@@ -1177,7 +1178,7 @@ public class PdfPKCS7 {
 	 */
 	public void setExternalDigest(byte digest[], byte RSAdata[], String digestEncryptionAlgorithm) {
 		externalDigest = digest;
-		externalRSAdata = RSAdata;
+		externalRsaData = RSAdata;
 		if (digestEncryptionAlgorithm != null) {
 			if (digestEncryptionAlgorithm.equals("RSA")) {
 				this.digestEncryptionAlgorithm = ID_RSA;
@@ -1231,16 +1232,16 @@ public class PdfPKCS7 {
 		try {
 			if (externalDigest != null) {
 				digest = externalDigest;
-				if (RSAdata != null)
-					RSAdata = externalRSAdata;
-			} else if (externalRSAdata != null && RSAdata != null) {
-				RSAdata = externalRSAdata;
-				sig.update(RSAdata);
+				if (rsaData != null)
+					rsaData = externalRsaData;
+			} else if (externalRsaData != null && rsaData != null) {
+				rsaData = externalRsaData;
+				sig.update(rsaData);
 				digest = sig.sign();
 			} else {
-				if (RSAdata != null) {
-					RSAdata = messageDigest.digest();
-					sig.update(RSAdata);
+				if (rsaData != null) {
+					rsaData = messageDigest.digest();
+					sig.update(rsaData);
 				}
 				digest = sig.sign();
 			}
@@ -1257,8 +1258,8 @@ public class PdfPKCS7 {
 			// Create the contentInfo.
 			ASN1EncodableVector v = new ASN1EncodableVector();
 			v.add(new DERObjectIdentifier(ID_PKCS7_DATA));
-			if (RSAdata != null)
-				v.add(new DERTaggedObject(0, new DEROctetString(RSAdata)));
+			if (rsaData != null)
+				v.add(new DERTaggedObject(0, new DEROctetString(rsaData)));
 			DERSequence contentinfo = new DERSequence(v);
 
 			// Get all the certificates
@@ -1378,7 +1379,7 @@ public class PdfPKCS7 {
 
 		// @todo: move this together with the rest of the defintions
 		String ID_TIME_STAMP_TOKEN = "1.2.840.113549.1.9.16.2.14"; // RFC 3161
-																	// id-aa-timeStampToken
+		// id-aa-timeStampToken
 
 		ASN1InputStream tempstream = new ASN1InputStream(new ByteArrayInputStream(timeStampToken));
 		ASN1EncodableVector unauthAttributes = new ASN1EncodableVector();

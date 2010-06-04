@@ -1,5 +1,5 @@
 /*
- * $Id: LineSeparator.java,v 1.1 2010/04/14 17:50:35 kwart Exp $
+ * $Id: LineSeparator.java,v 1.2 2010/06/04 06:46:21 kwart Exp $
  *
  * Copyright 2008 by Paulo Soares.
  *
@@ -52,7 +52,7 @@ package com.lowagie.text.pdf.draw;
 import com.lowagie.text.Element;
 import com.lowagie.text.pdf.PdfContentByte;
 
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 
 /**
  * Element that draws a solid line from left to right.

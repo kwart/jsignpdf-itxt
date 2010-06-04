@@ -46,7 +46,7 @@
  * http://www.lowagie.com/iText/
  */
 package com.lowagie.text.pdf;
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: PdfPrinterGraphics2D.java,v 1.1 2010/04/14 17:50:31 kwart Exp $
+ * $Id: PdfPrinterGraphics2D.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
  *
  * Copyright 2004 Paulo Soares and Alexandru Carstoiu
  *
@@ -47,15 +47,15 @@
  * http://www.lowagie.com/iText/
  */
 
-package com.lowagie.text.pdf;
+/*package com.lowagie.text.pdf;
 
 import java.awt.print.PrinterGraphics;
 import java.awt.print.PrinterJob;
 
-/**
+*//**
  * This is an extension class for the sole purpose of implementing the
  * {@link java.awt.print.PrinterGraphics PrinterGraphics} interface.
- */
+ *//*
 public class PdfPrinterGraphics2D extends PdfGraphics2D implements PrinterGraphics
 {
 	private PrinterJob printerJob;
@@ -69,4 +69,4 @@ public class PdfPrinterGraphics2D extends PdfGraphics2D implements PrinterGraphi
 	public PrinterJob getPrinterJob()	{
 		return printerJob;
 	}
-}
+}*/

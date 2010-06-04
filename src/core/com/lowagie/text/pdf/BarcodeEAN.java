@@ -47,7 +47,7 @@
 package com.lowagie.text.pdf;
 
 import java.awt.Canvas;
-import java.awt.Color;
+import com.lowagie.text.awt.Color;
 import java.awt.Image;
 import java.awt.image.MemoryImageSource;
 import java.util.Arrays;
