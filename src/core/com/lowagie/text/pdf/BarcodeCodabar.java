@@ -1,5 +1,5 @@
 /*
- * $Id: BarcodeCodabar.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: BarcodeCodabar.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2002-2006 by Paulo Soares.
  *
@@ -49,7 +49,7 @@
 package com.lowagie.text.pdf;
 
 import java.awt.Canvas;
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.MemoryImageSource;
 

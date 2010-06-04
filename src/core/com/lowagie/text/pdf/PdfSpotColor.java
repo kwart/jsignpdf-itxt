@@ -1,5 +1,5 @@
 /*
- * $Id: PdfSpotColor.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfSpotColor.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2002 by Phillip Pan
  *
@@ -49,7 +49,7 @@
 
 package com.lowagie.text.pdf;
 
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 
 /**
  * A <CODE>PdfSpotColor</CODE> defines a ColorSpace

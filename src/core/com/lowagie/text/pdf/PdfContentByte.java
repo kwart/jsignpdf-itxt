@@ -1,5 +1,5 @@
 /*
- * $Id: PdfContentByte.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfContentByte.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 Bruno Lowagie
  *
@@ -48,7 +48,7 @@
  */
 
 package com.lowagie.text.pdf;
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.print.PrinterJob;
 import java.util.ArrayList;
@@ -2779,9 +2779,9 @@ public class PdfContentByte {
      * @param height the height of the panel
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createGraphicsShapes(float width, float height) {
+    public java.awt.Graphics2D createGraphicsShapes(float width, float height) {
         return new PdfGraphics2D(this, width, height, null, true, false, 0);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands as shapes. No PDF fonts will appear.
@@ -2790,9 +2790,9 @@ public class PdfContentByte {
      * @param printerJob a printer job
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createPrinterGraphicsShapes(float width, float height, PrinterJob printerJob) {
+    public java.awt.Graphics2D createPrinterGraphicsShapes(float width, float height, PrinterJob printerJob) {
         return new PdfPrinterGraphics2D(this, width, height, null, true, false, 0, printerJob);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to write on. The graphics
      * are translated to PDF commands.
@@ -2800,9 +2800,9 @@ public class PdfContentByte {
      * @param height the height of the panel
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createGraphics(float width, float height) {
+    public java.awt.Graphics2D createGraphics(float width, float height) {
         return new PdfGraphics2D(this, width, height, null, false, false, 0);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands.
@@ -2811,9 +2811,9 @@ public class PdfContentByte {
      * @param printerJob
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createPrinterGraphics(float width, float height, PrinterJob printerJob) {
+    public java.awt.Graphics2D createPrinterGraphics(float width, float height, PrinterJob printerJob) {
         return new PdfPrinterGraphics2D(this, width, height, null, false, false, 0, printerJob);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to write on. The graphics
      * are translated to PDF commands.
@@ -2823,9 +2823,9 @@ public class PdfContentByte {
      * @param quality
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createGraphics(float width, float height, boolean convertImagesToJPEG, float quality) {
+    public java.awt.Graphics2D createGraphics(float width, float height, boolean convertImagesToJPEG, float quality) {
         return new PdfGraphics2D(this, width, height, null, false, convertImagesToJPEG, quality);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands.
@@ -2836,9 +2836,9 @@ public class PdfContentByte {
      * @param printerJob
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createPrinterGraphics(float width, float height, boolean convertImagesToJPEG, float quality, PrinterJob printerJob) {
+    public java.awt.Graphics2D createPrinterGraphics(float width, float height, boolean convertImagesToJPEG, float quality, PrinterJob printerJob) {
         return new PdfPrinterGraphics2D(this, width, height, null, false, convertImagesToJPEG, quality, printerJob);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands.
@@ -2848,9 +2848,9 @@ public class PdfContentByte {
      * @param quality
      * @return A Graphics2D object
      */
-    /*public java.awt.Graphics2D createGraphicsShapes(float width, float height, boolean convertImagesToJPEG, float quality) {
+    public java.awt.Graphics2D createGraphicsShapes(float width, float height, boolean convertImagesToJPEG, float quality) {
         return new PdfGraphics2D(this, width, height, null, true, convertImagesToJPEG, quality);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands.
@@ -2861,9 +2861,9 @@ public class PdfContentByte {
      * @param printerJob
      * @return a Graphics2D object
      */
-    /*public java.awt.Graphics2D createPrinterGraphicsShapes(float width, float height, boolean convertImagesToJPEG, float quality, PrinterJob printerJob) {
+    public java.awt.Graphics2D createPrinterGraphicsShapes(float width, float height, boolean convertImagesToJPEG, float quality, PrinterJob printerJob) {
         return new PdfPrinterGraphics2D(this, width, height, null, true, convertImagesToJPEG, quality, printerJob);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to write on. The graphics
      * are translated to PDF commands.
@@ -2872,9 +2872,9 @@ public class PdfContentByte {
      * @param fontMapper the mapping from awt fonts to <CODE>BaseFont</CODE>
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createGraphics(float width, float height, FontMapper fontMapper) {
+    public java.awt.Graphics2D createGraphics(float width, float height, FontMapper fontMapper) {
         return new PdfGraphics2D(this, width, height, fontMapper, false, false, 0);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands.
@@ -2884,9 +2884,9 @@ public class PdfContentByte {
      * @param printerJob a printer job
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createPrinterGraphics(float width, float height, FontMapper fontMapper, PrinterJob printerJob) {
+    public java.awt.Graphics2D createPrinterGraphics(float width, float height, FontMapper fontMapper, PrinterJob printerJob) {
         return new PdfPrinterGraphics2D(this, width, height, fontMapper, false, false, 0, printerJob);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to write on. The graphics
      * are translated to PDF commands.
@@ -2897,9 +2897,9 @@ public class PdfContentByte {
      * @param quality the quality of the jpeg
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createGraphics(float width, float height, FontMapper fontMapper, boolean convertImagesToJPEG, float quality) {
+    public java.awt.Graphics2D createGraphics(float width, float height, FontMapper fontMapper, boolean convertImagesToJPEG, float quality) {
         return new PdfGraphics2D(this, width, height, fontMapper, false, convertImagesToJPEG, quality);
-    }*/
+    }
 
     /** Gets a <CODE>Graphics2D</CODE> to print on. The graphics
      * are translated to PDF commands.
@@ -2911,9 +2911,9 @@ public class PdfContentByte {
      * @param printerJob a printer job
      * @return a <CODE>Graphics2D</CODE>
      */
-    /*public java.awt.Graphics2D createPrinterGraphics(float width, float height, FontMapper fontMapper, boolean convertImagesToJPEG, float quality, PrinterJob printerJob) {
+    public java.awt.Graphics2D createPrinterGraphics(float width, float height, FontMapper fontMapper, boolean convertImagesToJPEG, float quality, PrinterJob printerJob) {
         return new PdfPrinterGraphics2D(this, width, height, fontMapper, false, convertImagesToJPEG, quality, printerJob);
-    }*/
+    }
 
     PageResources getPageResources() {
         return pdf.getPageResources();

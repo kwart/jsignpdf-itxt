@@ -1,5 +1,5 @@
 /*
- * $Id: FontFactoryImp.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: FontFactoryImp.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2002 by Bruno Lowagie.
  *
@@ -49,7 +49,7 @@
 
 package com.lowagie.text;
 
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

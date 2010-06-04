@@ -1,5 +1,5 @@
 /*
- * $Id: PdfGraphics2D.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfGraphics2D.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2002 by Jim Moore <jim@scolamoore.com>.
  *
@@ -51,12 +51,12 @@ package com.lowagie.text.pdf;
 
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import com.lowagie.text.awt.GradientPaint;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -109,7 +109,7 @@ import javax.imageio.ImageWriter;
 import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import javax.imageio.stream.ImageOutputStream;
 
-/*public class PdfGraphics2D extends Graphics2D {
+public class PdfGraphics2D extends Graphics2D {
     
     private static final int FILL = 1;
     private static final int STROKE = 2;
@@ -136,7 +136,7 @@ import javax.imageio.stream.ImageOutputStream;
     
     private PdfContentByte cb;
     
-    *//** Storage for BaseFont objects created. *//*
+    /** Storage for BaseFont objects created. */
     private HashMap baseFonts;
     
     private boolean disposeCalled = false;
@@ -185,10 +185,10 @@ import javax.imageio.stream.ImageOutputStream;
         setRenderingHint(HyperLinkKey.KEY_INSTANCE, HyperLinkKey.VALUE_HYPERLINKKEY_OFF);
     }
     
-    *//**
+    /**
      * Constructor for PDFGraphics2D.
      *
-     *//*
+     */
     PdfGraphics2D(PdfContentByte cb, float width, float height, FontMapper fontMapper, boolean onlyShapes, boolean convertImagesToJPEG, float quality) {
         super();
         dg2.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
@@ -218,23 +218,23 @@ import javax.imageio.stream.ImageOutputStream;
         cb.saveState();
     }
     
-    *//**
+    /**
      * @see Graphics2D#draw(Shape)
-     *//*
+     */
     public void draw(Shape s) {
         followPath(s, STROKE);
     }
     
-    *//**
+    /**
      * @see Graphics2D#drawImage(Image, AffineTransform, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, AffineTransform xform, ImageObserver obs) {
         return drawImage(img, null, xform, null, obs);
     }
     
-    *//**
+    /**
      * @see Graphics2D#drawImage(BufferedImage, BufferedImageOp, int, int)
-     *//*
+     */
     public void drawImage(BufferedImage img, BufferedImageOp op, int x, int y) {
         BufferedImage result = img;
         if (op != null) {
@@ -244,9 +244,9 @@ import javax.imageio.stream.ImageOutputStream;
         drawImage(result, x, y, null);
     }
     
-    *//**
+    /**
      * @see Graphics2D#drawRenderedImage(RenderedImage, AffineTransform)
-     *//*
+     */
     public void drawRenderedImage(RenderedImage img, AffineTransform xform) {
         BufferedImage image = null;
         if (img instanceof BufferedImage) {
@@ -271,34 +271,34 @@ import javax.imageio.stream.ImageOutputStream;
         drawImage(image, xform, null);
     }
     
-    *//**
+    /**
      * @see Graphics2D#drawRenderableImage(RenderableImage, AffineTransform)
-     *//*
+     */
     public void drawRenderableImage(RenderableImage img, AffineTransform xform) {
         drawRenderedImage(img.createDefaultRendering(), xform);
     }
     
-    *//**
+    /**
      * @see Graphics#drawString(String, int, int)
-     *//*
+     */
     public void drawString(String s, int x, int y) {
         drawString(s, (float)x, (float)y);
     }
     
-    *//**
+    /**
      * Calculates position and/or stroke thickness depending on the font size
      * @param d value to be converted
      * @param i font size
      * @return position and/or stroke thickness depending on the font size
-     *//*
+     */
     public static double asPoints(double d, int i) {
         return d * i / AFM_DIVISOR;
     }
-    *//**
+    /**
      * This routine goes through the attributes and sets the font
      * before calling the actual string drawing routine
      * @param iter
-     *//*
+     */
     protected void doAttributes(AttributedCharacterIterator iter) {
         underline = false;
         Set set = iter.getAttributes().keySet();
@@ -350,9 +350,9 @@ import javax.imageio.stream.ImageOutputStream;
         }
     }
 
-    *//**
+    /**
      * @see Graphics2D#drawString(String, float, float)
-     *//*
+     */
     public void drawString(String s, float x, float y) {
         if (s.length() == 0)
             return;
@@ -503,24 +503,24 @@ import javax.imageio.stream.ImageOutputStream;
         }
     }
 
-    *//**
+    /**
      * @see Graphics#drawString(AttributedCharacterIterator, int, int)
-     *//*
+     */
     public void drawString(AttributedCharacterIterator iterator, int x, int y) {
         drawString(iterator, (float)x, (float)y);
     }
     
-    *//**
+    /**
      * @see Graphics2D#drawString(AttributedCharacterIterator, float, float)
-     *//*
+     */
     public void drawString(AttributedCharacterIterator iter, float x, float y) {
-
+/*
         StringBuffer sb = new StringBuffer();
         for(char c = iter.first(); c != AttributedCharacterIterator.DONE; c = iter.next()) {
             sb.append(c);
         }
         drawString(sb.toString(),x,y);
-
+*/
         StringBuffer stringbuffer = new StringBuffer(iter.getEndIndex());
         for(char c = iter.first(); c != '\uFFFF'; c = iter.next())
         {
@@ -542,24 +542,24 @@ import javax.imageio.stream.ImageOutputStream;
         underline = false;
     }
     
-    *//**
+    /**
      * @see Graphics2D#drawGlyphVector(GlyphVector, float, float)
-     *//*
+     */
     public void drawGlyphVector(GlyphVector g, float x, float y) {
         Shape s = g.getOutline(x, y);
         fill(s);
     }
     
-    *//**
+    /**
      * @see Graphics2D#fill(Shape)
-     *//*
+     */
     public void fill(Shape s) {
         followPath(s, FILL);
     }
     
-    *//**
+    /**
      * @see Graphics2D#hit(Rectangle, Shape, boolean)
-     *//*
+     */
     public boolean hit(Rectangle rect, Shape s, boolean onStroke) {
         if (onStroke) {
             s = stroke.createStrokedShape(s);
@@ -571,17 +571,17 @@ import javax.imageio.stream.ImageOutputStream;
         return area.intersects(rect.x, rect.y, rect.width, rect.height);
     }
     
-    *//**
+    /**
      * @see Graphics2D#getDeviceConfiguration()
-     *//*
+     */
     public GraphicsConfiguration getDeviceConfiguration() {
         return dg2.getDeviceConfiguration();
     }
     
-    *//**
+    /**
 	 * Method contributed by Alexej Suchov
      * @see Graphics2D#setComposite(Composite)
-     *//*
+     */
     public void setComposite(Composite comp) {
         
 		if (comp instanceof AlphaComposite) {
@@ -608,10 +608,10 @@ import javax.imageio.stream.ImageOutputStream;
 
     }
     
-    *//**
+    /**
 	 * Method contributed by Alexej Suchov
      * @see Graphics2D#setPaint(Paint)
-     *//*
+     */
     public void setPaint(Paint paint) {
         if (paint == null)
             return;
@@ -721,20 +721,20 @@ import javax.imageio.stream.ImageOutputStream;
         }
     }
     
-    *//**
+    /**
      * @see Graphics2D#setStroke(Stroke)
-     *//*
+     */
     public void setStroke(Stroke s) {
         originalStroke = s;
         this.stroke = transformStroke(s);
     }
     
     
-    *//**
+    /**
      * Sets a rendering hint
      * @param arg0
      * @param arg1
-     *//*
+     */
     public void setRenderingHint(Key arg0, Object arg1) {
     	 if (arg1 != null) {
          	rhints.put(arg0, arg1);
@@ -750,106 +750,106 @@ import javax.imageio.stream.ImageOutputStream;
          }
     }
     
-    *//**
+    /**
      * @param arg0 a key
      * @return the rendering hint
-     *//*
+     */
     public Object getRenderingHint(Key arg0) {
         return rhints.get(arg0);
     }
     
-    *//**
+    /**
      * @see Graphics2D#setRenderingHints(Map)
-     *//*
+     */
     public void setRenderingHints(Map hints) {
         rhints.clear();
         rhints.putAll(hints);
     }
     
-    *//**
+    /**
      * @see Graphics2D#addRenderingHints(Map)
-     *//*
+     */
     public void addRenderingHints(Map hints) {
         rhints.putAll(hints);
     }
     
-    *//**
+    /**
      * @see Graphics2D#getRenderingHints()
-     *//*
+     */
     public RenderingHints getRenderingHints() {
         return rhints;
     }
     
-    *//**
+    /**
      * @see Graphics#translate(int, int)
-     *//*
+     */
     public void translate(int x, int y) {
         translate((double)x, (double)y);
     }
     
-    *//**
+    /**
      * @see Graphics2D#translate(double, double)
-     *//*
+     */
     public void translate(double tx, double ty) {
         transform.translate(tx,ty);
     }
     
-    *//**
+    /**
      * @see Graphics2D#rotate(double)
-     *//*
+     */
     public void rotate(double theta) {
         transform.rotate(theta);
     }
     
-    *//**
+    /**
      * @see Graphics2D#rotate(double, double, double)
-     *//*
+     */
     public void rotate(double theta, double x, double y) {
         transform.rotate(theta, x, y);
     }
     
-    *//**
+    /**
      * @see Graphics2D#scale(double, double)
-     *//*
+     */
     public void scale(double sx, double sy) {
         transform.scale(sx, sy);
         this.stroke = transformStroke(originalStroke);
     }
     
-    *//**
+    /**
      * @see Graphics2D#shear(double, double)
-     *//*
+     */
     public void shear(double shx, double shy) {
         transform.shear(shx, shy);
     }
     
-    *//**
+    /**
      * @see Graphics2D#transform(AffineTransform)
-     *//*
+     */
     public void transform(AffineTransform tx) {
         transform.concatenate(tx);
         this.stroke = transformStroke(originalStroke);
     }
     
-    *//**
+    /**
      * @see Graphics2D#setTransform(AffineTransform)
-     *//*
+     */
     public void setTransform(AffineTransform t) {
         transform = new AffineTransform(t);
         this.stroke = transformStroke(originalStroke);
     }
     
-    *//**
+    /**
      * @see Graphics2D#getTransform()
-     *//*
+     */
     public AffineTransform getTransform() {
         return new AffineTransform(transform);
     }
     
-    *//**
+    /**
 	 * Method contributed by Alexej Suchov
      * @see Graphics2D#getPaint()
-     *//*
+     */
     public Paint getPaint() {
         if (realPaint != null) {
             return realPaint;
@@ -858,47 +858,47 @@ import javax.imageio.stream.ImageOutputStream;
         }
 	}
     
-    *//**
+    /**
      * @see Graphics2D#getComposite()
-     *//*
+     */
     public Composite getComposite() {
         return composite;
     }
     
-    *//**
+    /**
      * @see Graphics2D#setBackground(Color)
-     *//*
+     */
     public void setBackground(Color color) {
         background = color;
     }
     
-    *//**
+    /**
      * @see Graphics2D#getBackground()
-     *//*
+     */
     public Color getBackground() {
         return background;
     }
     
-    *//**
+    /**
      * @see Graphics2D#getStroke()
-     *//*
+     */
     public Stroke getStroke() {
         return originalStroke;
     }
     
     
-    *//**
+    /**
      * @see Graphics2D#getFontRenderContext()
-     *//*
+     */
     public FontRenderContext getFontRenderContext() {
         boolean antialias = RenderingHints.VALUE_TEXT_ANTIALIAS_ON.equals(getRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING));
         boolean fractions = RenderingHints.VALUE_FRACTIONALMETRICS_ON.equals(getRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS));
         return new FontRenderContext(new AffineTransform(), antialias, fractions);
     }
     
-    *//**
+    /**
      * @see Graphics#create()
-     *//*
+     */
     public Graphics create() {
         PdfGraphics2D g2 = new PdfGraphics2D();
         g2.rhints.putAll( this.rhints );
@@ -942,9 +942,9 @@ import javax.imageio.stream.ImageOutputStream;
     public PdfContentByte getContent() {
         return this.cb;
     }
-    *//**
+    /**
      * @see Graphics#getColor()
-     *//*
+     */
     public Color getColor() {
         if (paint instanceof Color) {
             return (Color)paint;
@@ -953,38 +953,38 @@ import javax.imageio.stream.ImageOutputStream;
         }
     }
     
-    *//**
+    /**
      * @see Graphics#setColor(Color)
-     *//*
+     */
     public void setColor(Color color) {
         setPaint(color);
     }
     
-    *//**
+    /**
      * @see Graphics#setPaintMode()
-     *//*
+     */
     public void setPaintMode() {}
     
-    *//**
+    /**
      * @see Graphics#setXORMode(Color)
-     *//*
+     */
     public void setXORMode(Color c1) {
         
     }
     
-    *//**
+    /**
      * @see Graphics#getFont()
-     *//*
+     */
     public Font getFont() {
         return font;
     }
     
-    *//**
+    /**
      * @see Graphics#setFont(Font)
-     *//*
-    *//**
+     */
+    /**
      * Sets the current font.
-     *//*
+     */
     public void setFont(Font f) {
         if (f == null)
             return;
@@ -1010,41 +1010,41 @@ import javax.imageio.stream.ImageOutputStream;
         }
     }
     
-    *//**
+    /**
      * @see Graphics#getFontMetrics(Font)
-     *//*
+     */
     public FontMetrics getFontMetrics(Font f) {
         return dg2.getFontMetrics(f);
     }
     
-    *//**
+    /**
      * @see Graphics#getClipBounds()
-     *//*
+     */
     public Rectangle getClipBounds() {
         if (clip == null)
             return null;
         return getClip().getBounds();
     }
     
-    *//**
+    /**
      * @see Graphics#clipRect(int, int, int, int)
-     *//*
+     */
     public void clipRect(int x, int y, int width, int height) {
         Rectangle2D rect = new Rectangle2D.Double(x,y,width,height);
         clip(rect);
     }
     
-    *//**
+    /**
      * @see Graphics#setClip(int, int, int, int)
-     *//*
+     */
     public void setClip(int x, int y, int width, int height) {
         Rectangle2D rect = new Rectangle2D.Double(x,y,width,height);
         setClip(rect);
     }
     
-    *//**
+    /**
      * @see Graphics2D#clip(Shape)
-     *//*
+     */
     public void clip(Shape s) {
         if (s == null) {
             setClip(null);
@@ -1058,9 +1058,9 @@ import javax.imageio.stream.ImageOutputStream;
         followPath(s, CLIP);
     }
     
-    *//**
+    /**
      * @see Graphics#getClip()
-     *//*
+     */
     public Shape getClip() {
         try {
             return transform.createInverse().createTransformedShape(clip);
@@ -1070,9 +1070,9 @@ import javax.imageio.stream.ImageOutputStream;
         }
     }
     
-    *//**
+    /**
      * @see Graphics#setClip(Shape)
-     *//*
+     */
     public void setClip(Shape s) {
         cb.restoreState();
         cb.saveState();
@@ -1090,38 +1090,38 @@ import javax.imageio.stream.ImageOutputStream;
         oldStroke = strokeOne;
     }
     
-    *//**
+    /**
      * @see Graphics#copyArea(int, int, int, int, int, int)
-     *//*
+     */
     public void copyArea(int x, int y, int width, int height, int dx, int dy) {
         
     }
     
-    *//**
+    /**
      * @see Graphics#drawLine(int, int, int, int)
-     *//*
+     */
     public void drawLine(int x1, int y1, int x2, int y2) {
         Line2D line = new Line2D.Double(x1, y1, x2, y2);
         draw(line);
     }
     
-    *//**
+    /**
      * @see Graphics#fillRect(int, int, int, int)
-     *//*
+     */
     public void drawRect(int x, int y, int width, int height) {
         draw(new Rectangle(x, y, width, height));
     }
     
-    *//**
+    /**
      * @see Graphics#fillRect(int, int, int, int)
-     *//*
+     */
     public void fillRect(int x, int y, int width, int height) {
         fill(new Rectangle(x,y,width,height));
     }
     
-    *//**
+    /**
      * @see Graphics#clearRect(int, int, int, int)
-     *//*
+     */
     public void clearRect(int x, int y, int width, int height) {
         Paint temp = paint;
         setPaint(background);
@@ -1129,74 +1129,74 @@ import javax.imageio.stream.ImageOutputStream;
         setPaint(temp);
     }
     
-    *//**
+    /**
      * @see Graphics#drawRoundRect(int, int, int, int, int, int)
-     *//*
+     */
     public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
         RoundRectangle2D rect = new RoundRectangle2D.Double(x,y,width,height,arcWidth, arcHeight);
         draw(rect);
     }
     
-    *//**
+    /**
      * @see Graphics#fillRoundRect(int, int, int, int, int, int)
-     *//*
+     */
     public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
         RoundRectangle2D rect = new RoundRectangle2D.Double(x,y,width,height,arcWidth, arcHeight);
         fill(rect);
     }
     
-    *//**
+    /**
      * @see Graphics#drawOval(int, int, int, int)
-     *//*
+     */
     public void drawOval(int x, int y, int width, int height) {
         Ellipse2D oval = new Ellipse2D.Float(x, y, width, height);
         draw(oval);
     }
     
-    *//**
+    /**
      * @see Graphics#fillOval(int, int, int, int)
-     *//*
+     */
     public void fillOval(int x, int y, int width, int height) {
         Ellipse2D oval = new Ellipse2D.Float(x, y, width, height);
         fill(oval);
     }
     
-    *//**
+    /**
      * @see Graphics#drawArc(int, int, int, int, int, int)
-     *//*
+     */
     public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
         Arc2D arc = new Arc2D.Double(x,y,width,height,startAngle, arcAngle, Arc2D.OPEN);
         draw(arc);
 
     }
     
-    *//**
+    /**
      * @see Graphics#fillArc(int, int, int, int, int, int)
-     *//*
+     */
     public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
         Arc2D arc = new Arc2D.Double(x,y,width,height,startAngle, arcAngle, Arc2D.PIE);
         fill(arc);
     }
     
-    *//**
+    /**
      * @see Graphics#drawPolyline(int[], int[], int)
-     *//*
+     */
     public void drawPolyline(int[] x, int[] y, int nPoints) {
         PolylineShape polyline = new PolylineShape(x, y, nPoints);
         draw(polyline);
     }
     
-    *//**
+    /**
      * @see Graphics#drawPolygon(int[], int[], int)
-     *//*
+     */
     public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints) {
         Polygon poly = new Polygon(xPoints, yPoints, nPoints);
         draw(poly);
     }
     
-    *//**
+    /**
      * @see Graphics#fillPolygon(int[], int[], int)
-     *//*
+     */
     public void fillPolygon(int[] xPoints, int[] yPoints, int nPoints) {
         Polygon poly = new Polygon();
         for (int i = 0; i < nPoints; i++) {
@@ -1205,31 +1205,31 @@ import javax.imageio.stream.ImageOutputStream;
         fill(poly);
     }
     
-    *//**
+    /**
      * @see Graphics#drawImage(Image, int, int, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, int x, int y, ImageObserver observer) {
         return drawImage(img, x, y, null, observer);
     }
     
-    *//**
+    /**
      * @see Graphics#drawImage(Image, int, int, int, int, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, int x, int y, int width, int height, ImageObserver observer) {
         return drawImage(img, x, y, width, height, null, observer);
     }
     
-    *//**
+    /**
      * @see Graphics#drawImage(Image, int, int, Color, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, int x, int y, Color bgcolor, ImageObserver observer) {
         waitForImage(img);
         return drawImage(img, x, y, img.getWidth(observer), img.getHeight(observer), bgcolor, observer);
     }
     
-    *//**
+    /**
      * @see Graphics#drawImage(Image, int, int, int, int, Color, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor, ImageObserver observer) {
         waitForImage(img);
         double scalex = width/(double)img.getWidth(observer);
@@ -1239,16 +1239,16 @@ import javax.imageio.stream.ImageOutputStream;
         return drawImage(img, null, tx, bgcolor, observer);
     }
     
-    *//**
+    /**
      * @see Graphics#drawImage(Image, int, int, int, int, int, int, int, int, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, ImageObserver observer) {
         return drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null, observer);
     }
     
-    *//**
+    /**
      * @see Graphics#drawImage(Image, int, int, int, int, int, int, int, int, Color, ImageObserver)
-     *//*
+     */
     public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, Color bgcolor, ImageObserver observer) {
         waitForImage(img);
         double dwidth = (double)dx2-dx1;
@@ -1275,9 +1275,9 @@ import javax.imageio.stream.ImageOutputStream;
         return true;
     }
     
-    *//**
+    /**
      * @see Graphics#dispose()
-     *//*
+     */
     public void dispose() {
         if (kid)
             return;
@@ -1644,9 +1644,9 @@ import javax.imageio.stream.ImageOutputStream;
 		private static final long serialVersionUID = 6450197945596086638L;
     }
 
-    *//**
+    /**
      * @since 2.0.8
-     *//*
+     */
     public static class HyperLinkKey extends RenderingHints.Key
 	{
 	 	public static final HyperLinkKey KEY_INSTANCE = new HyperLinkKey(9999);
@@ -1667,4 +1667,3 @@ import javax.imageio.stream.ImageOutputStream;
 	}
 
 }
-*/

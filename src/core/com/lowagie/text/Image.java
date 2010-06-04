@@ -1,5 +1,5 @@
 /*
- * $Id: Image.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: Image.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 by Bruno Lowagie.
  *
@@ -58,7 +58,6 @@ import java.lang.reflect.Constructor;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.lowagie.text.awt.Color;
 import com.lowagie.text.pdf.PRIndirectReference;
 import com.lowagie.text.pdf.PdfArray;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -618,7 +617,7 @@ public abstract class Image extends Rectangle {
 	 * @throws IOException
 	 *             on error
 	 */
-	public static Image getInstance(java.awt.Image image, Color color,
+	public static Image getInstance(java.awt.Image image, java.awt.Color color,
 			boolean forceBW) throws BadElementException, IOException {
 		
 		if(image instanceof BufferedImage){
@@ -788,7 +787,7 @@ public abstract class Image extends Rectangle {
 	 * @throws IOException
 	 *             on error
 	 */
-	public static Image getInstance(java.awt.Image image, Color color)
+	public static Image getInstance(java.awt.Image image, java.awt.Color color)
 			throws BadElementException, IOException {
 		return Image.getInstance(image, color, false);
 	}
@@ -842,9 +841,9 @@ public abstract class Image extends Rectangle {
         int w = pg.getWidth();
         int h = pg.getHeight();
         PdfTemplate tp = cb.createTemplate(w, h);
-        /*Graphics2D g2d = tp.createGraphics(w, h, true, quality);
+        Graphics2D g2d = tp.createGraphics(w, h, true, quality);
         g2d.drawImage(awtImage, 0, 0, null);
-        g2d.dispose();*/
+        g2d.dispose();
         return getInstance(tp);
     }
 

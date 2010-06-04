@@ -1,5 +1,5 @@
 /*
- * $Id: PdfColor.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfColor.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 Bruno Lowagie
  *
@@ -48,7 +48,7 @@
  */
 
 package com.lowagie.text.pdf;
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 /**
  * A <CODE>PdfColor</CODE> defines a Color (it's a <CODE>PdfArray</CODE> containing 3 values).
  *

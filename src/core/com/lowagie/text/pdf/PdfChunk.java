@@ -1,5 +1,5 @@
 /*
- * $Id: PdfChunk.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfChunk.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 1999, 2000, 2001, 2002 Bruno Lowagie
  *
@@ -49,7 +49,7 @@
 
 package com.lowagie.text.pdf;
 
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

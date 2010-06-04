@@ -1,5 +1,5 @@
 /*
- * $Id: PdfAcroForm.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfAcroForm.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2002 Bruno Lowagie
  *
@@ -54,7 +54,6 @@ import java.util.Iterator;
 
 import com.lowagie.text.ExceptionConverter;
 import com.lowagie.text.Rectangle;
-import com.lowagie.text.awt.Color;
 
 /**
  * Each PDF document can contain maximum 1 AcroForm.
@@ -711,8 +710,8 @@ public class PdfAcroForm extends PdfDictionary {
         field.setFieldName(name);
         field.setFlags(PdfAnnotation.FLAGS_PRINT);
         field.setPage();
-        field.setMKBorderColor(Color.black);
-        field.setMKBackgroundColor(Color.white);
+        field.setMKBorderColor(java.awt.Color.black);
+        field.setMKBackgroundColor(java.awt.Color.white);
     }
 
     /**

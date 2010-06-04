@@ -1,5 +1,5 @@
 /*
- * $Id: ElementFactory.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: ElementFactory.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2007 by Bruno Lowagie.
  *
@@ -51,7 +51,7 @@
  */
 package com.lowagie.text.factories;
 
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;

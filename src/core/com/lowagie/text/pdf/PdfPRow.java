@@ -1,5 +1,5 @@
 /*
- * $Id: PdfPRow.java,v 1.2 2010/06/04 06:46:20 kwart Exp $
+ * $Id: PdfPRow.java,v 1.3 2010/06/04 09:06:00 kwart Exp $
  *
  * Copyright 2001, 2002 Paulo Soares
  *
@@ -49,7 +49,7 @@
 
 package com.lowagie.text.pdf;
 
-import com.lowagie.text.awt.Color;
+import java.awt.Color;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
