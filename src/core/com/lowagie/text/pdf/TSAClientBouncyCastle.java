@@ -1,5 +1,5 @@
 /*
- * $Id: TSAClientBouncyCastle.java,v 1.2 2010/06/04 06:35:53 kwart Exp $
+ * $Id: TSAClientBouncyCastle.java,v 1.3 2010/10/27 08:21:50 kwart Exp $
  *
  * Copyright 2009 Martin Brunecky, Aiken Sam
  *
@@ -63,7 +63,6 @@ import org.bouncycastle.tsp.TimeStampRequest;
 import org.bouncycastle.tsp.TimeStampRequestGenerator;
 import org.bouncycastle.tsp.TimeStampResponse;
 import org.bouncycastle.tsp.TimeStampToken;
-import org.bouncycastle.tsp.TimeStampTokenInfo;
 
 import com.lowagie.text.pdf.codec.Base64;
 
@@ -79,14 +78,16 @@ import com.lowagie.text.pdf.codec.Base64;
  */
 public class TSAClientBouncyCastle implements TSAClient {
 	/** URL of the Time Stamp Authority */
-	protected String tsaURL;
+	final private String tsaURL;
 	/** TSA Username */
-	protected String tsaUsername;
+	final private String tsaUsername;
 	/** TSA password */
-	protected String tsaPassword;
+	final private String tsaPassword;
 	/** Estimate of the received time stamp token */
-	protected int tokSzEstimate;
+	private int tokSzEstimate;
+
 	private Proxy proxy;
+	private String policy;
 
 	/**
 	 * Creates an instance of a TSAClient that will use BouncyCastle.
@@ -174,7 +175,9 @@ public class TSAClientBouncyCastle implements TSAClient {
 			// Setup the time stamp request
 			TimeStampRequestGenerator tsqGenerator = new TimeStampRequestGenerator();
 			tsqGenerator.setCertReq(true);
-			// tsqGenerator.setReqPolicy("1.3.6.1.4.1.601.10.3.1");
+			if (policy != null && policy.length() > 0) {
+				tsqGenerator.setReqPolicy(policy);
+			}
 			BigInteger nonce = BigInteger.valueOf(System.currentTimeMillis());
 			TimeStampRequest request = tsqGenerator.generate(X509ObjectIdentifiers.id_SHA1.getId(), imprint, nonce);
 			byte[] requestBytes = request.getEncoded();
@@ -190,11 +193,11 @@ public class TSAClientBouncyCastle implements TSAClient {
 			PKIFailureInfo failure = response.getFailInfo();
 			int value = (failure == null) ? 0 : failure.intValue();
 			if (value != 0) {
-				// @todo: Translate value of 15 error codes defined by
+				// TODO: Translate value of 15 error codes defined by
 				// PKIFailureInfo to string
 				throw new Exception("Invalid TSA '" + tsaURL + "' response, code " + value);
 			}
-			// @todo: validate the time stap certificate chain (if we want
+			// TODO: validate the time stap certificate chain (if we want
 			// assure we do not sign using an invalid timestamp).
 
 			// extract just the time stamp token (removes communication status
@@ -204,10 +207,11 @@ public class TSAClientBouncyCastle implements TSAClient {
 				throw new Exception("TSA '" + tsaURL + "' failed to return time stamp token: "
 						+ response.getStatusString());
 			}
-			TimeStampTokenInfo info = tsToken.getTimeStampInfo(); // to view
+			// TimeStampTokenInfo info = tsToken.getTimeStampInfo();
+			// System.out.println(info.getPolicy());
+
 			// details
 			byte[] encoded = tsToken.getEncoded();
-			long stop = System.currentTimeMillis();
 
 			// Update our token size estimate for the next call (padded to be
 			// safe)
@@ -282,6 +286,40 @@ public class TSAClientBouncyCastle implements TSAClient {
 	 */
 	public Proxy getProxy() {
 		return proxy;
+	}
+
+	/**
+	 * Gets Policy OID of TSA request.
+	 * 
+	 * @param policy
+	 */
+	public String getPolicy() {
+		return policy;
+	}
+
+	/**
+	 * Sets Policy OID of TSA request.
+	 * 
+	 * @param policy
+	 */
+	public void setPolicy(String policy) {
+		this.policy = policy;
+	}
+
+	public String getTsaURL() {
+		return tsaURL;
+	}
+
+	public String getTsaUsername() {
+		return tsaUsername;
+	}
+
+	public String getTsaPassword() {
+		return tsaPassword;
+	}
+
+	public int getTokSzEstimate() {
+		return tokSzEstimate;
 	}
 
 }
