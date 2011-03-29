@@ -1,5 +1,5 @@
 /*
- * $Id: PdfSignatureAppearance.java,v 1.2 2011/03/29 06:48:18 kwart Exp $
+ * $Id: PdfSignatureAppearance.java,v 1.3 2011/03/29 07:04:08 kwart Exp $
  *
  * Copyright 2004-2006 by Paulo Soares.
  *
@@ -500,7 +500,7 @@ public class PdfSignatureAppearance {
 			if (render == SignatureRenderNameAndDescription) {
 				String signedBy = PdfPKCS7.getSubjectFields((X509Certificate) certChain[0]).getField("CN");
 				Rectangle sr2 = new Rectangle(signatureRect.getWidth() - MARGIN, signatureRect.getHeight() - MARGIN);
-				float signedSize = size > 0f ? size : fitText(font, signedBy, sr2, -1, runDirection);
+				float signedSize = fitText(font, signedBy, sr2, size, runDirection);
 				ColumnText ct2 = new ColumnText(t);
 				ct2.setRunDirection(runDirection);
 				ct2.setSimpleColumn(new Phrase(signedBy, font), signatureRect.getLeft(), signatureRect.getBottom(),
@@ -555,12 +555,11 @@ public class PdfSignatureAppearance {
 				font = new Font();
 			else
 				font = new Font(layer2Font);
-			float size = font.getSize();
 			String text = "Signature Not Verified";
 			if (layer4Text != null)
 				text = layer4Text;
 			Rectangle sr = new Rectangle(rect.getWidth() - 2 * MARGIN, rect.getHeight() * TOP_SECTION - 2 * MARGIN);
-			size = fitText(font, text, sr, 15, runDirection);
+			float size = fitText(font, text, sr, font.getSize() > 0f ? font.getSize() : 15f, runDirection);
 			ColumnText ct = new ColumnText(t);
 			ct.setRunDirection(runDirection);
 			ct.setSimpleColumn(new Phrase(text, font), MARGIN, 0, rect.getWidth() - MARGIN, rect.getHeight() - MARGIN,
