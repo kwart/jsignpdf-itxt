@@ -1,5 +1,5 @@
 /*
- * $Id: PdfCopyFormsImp.java,v 1.1 2010/04/14 17:50:31 kwart Exp $
+ * $Id: PdfCopyFormsImp.java,v 1.2 2011/03/30 20:34:07 kwart Exp $
  *
  * Copyright 2009 Bruno Lowagie (inspired by Paulo Soares)
  *
@@ -49,58 +49,63 @@
 
 package com.lowagie.text.pdf;
 
-import com.lowagie.text.DocumentException;
 import java.io.OutputStream;
-import java.util.HashMap;
+import java.util.Map;
+
+import com.lowagie.text.DocumentException;
 
 /**
- * Allows you to add one (or more) existing PDF document(s)
- * and add the form(s) of (an)other PDF document(s).
+ * Allows you to add one (or more) existing PDF document(s) and add the form(s)
+ * of (an)other PDF document(s).
+ * 
  * @since 2.1.5
  */
 class PdfCopyFormsImp extends PdfCopyFieldsImp {
 
-    /**
-   * This sets up the output document 
-   * @param os The Outputstream pointing to the output document
-   * @throws DocumentException
-   */
-    PdfCopyFormsImp(OutputStream os) throws DocumentException {
-        super(os);
-    }
-    
-    /**
-     * This method feeds in the source document
-     * @param reader The PDF reader containing the source document
-     * @throws DocumentException
-     */
-    public void copyDocumentFields(PdfReader reader) throws DocumentException {
-    	if (!reader.isOpenedWithFullPermissions())
-            throw new IllegalArgumentException("PdfReader not opened with owner password");
-        if (readers2intrefs.containsKey(reader)) {
-            reader = new PdfReader(reader);
-        }
-        else {
-            if (reader.isTampered())
-                throw new DocumentException("The document was reused.");
-            reader.consolidateNamedDestinations();
-            reader.setTampered(true);
-        }
-        reader.shuffleSubsetNames();
-        readers2intrefs.put(reader, new IntHashtable());
-        fields.add(reader.getAcroFields());
-        updateCalculationOrder(reader);
-    }
+	/**
+	 * This sets up the output document
+	 * 
+	 * @param os
+	 *            The Outputstream pointing to the output document
+	 * @throws DocumentException
+	 */
+	PdfCopyFormsImp(OutputStream os) throws DocumentException {
+		super(os);
+	}
 
-    /**
-     * This merge fields is slightly different from the mergeFields method
-     * of PdfCopyFields.
-     */
-    void mergeFields() {
-        for (int k = 0; k < fields.size(); ++k) {
-            HashMap fd = ((AcroFields)fields.get(k)).getFields();
-            mergeWithMaster(fd);
-        }
-    }
+	/**
+	 * This method feeds in the source document
+	 * 
+	 * @param reader
+	 *            The PDF reader containing the source document
+	 * @throws DocumentException
+	 */
+	public void copyDocumentFields(PdfReader reader) throws DocumentException {
+		if (!reader.isOpenedWithFullPermissions())
+			throw new IllegalArgumentException("PdfReader not opened with owner password");
+		if (readers2intrefs.containsKey(reader)) {
+			reader = new PdfReader(reader);
+		} else {
+			if (reader.isTampered())
+				throw new DocumentException("The document was reused.");
+			reader.consolidateNamedDestinations();
+			reader.setTampered(true);
+		}
+		reader.shuffleSubsetNames();
+		readers2intrefs.put(reader, new IntHashtable());
+		fields.add(reader.getAcroFields());
+		updateCalculationOrder(reader);
+	}
+
+	/**
+	 * This merge fields is slightly different from the mergeFields method of
+	 * PdfCopyFields.
+	 */
+	void mergeFields() {
+		for (int k = 0; k < fields.size(); ++k) {
+			Map fd = ((AcroFields) fields.get(k)).getFields();
+			mergeWithMaster(fd);
+		}
+	}
 
 }
