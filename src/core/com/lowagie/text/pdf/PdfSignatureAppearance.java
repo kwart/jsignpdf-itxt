@@ -1,5 +1,5 @@
 /*
- * $Id: PdfSignatureAppearance.java,v 1.3 2011/03/29 07:04:08 kwart Exp $
+ * $Id: PdfSignatureAppearance.java,v 1.4 2011/07/01 11:16:44 kwart Exp $
  *
  * Copyright 2004-2006 by Paulo Soares.
  *
@@ -348,14 +348,12 @@ public class PdfSignatureAppearance {
 			break;
 		case 180:
 			pageRect = new Rectangle(pageSize.getRight() - pageRect.getLeft(),
-					pageSize.getTop() - pageRect.getBottom(), pageSize.getRight() - pageRect.getRight(), pageSize
-							.getTop()
-							- pageRect.getTop());
+					pageSize.getTop() - pageRect.getBottom(), pageSize.getRight() - pageRect.getRight(),
+					pageSize.getTop() - pageRect.getTop());
 			break;
 		case 270:
-			pageRect = new Rectangle(pageSize.getRight() - pageRect.getBottom(), pageRect.getLeft(), pageSize
-					.getRight()
-					- pageRect.getTop(), pageRect.getRight());
+			pageRect = new Rectangle(pageSize.getRight() - pageRect.getBottom(), pageRect.getLeft(),
+					pageSize.getRight() - pageRect.getTop(), pageRect.getRight());
 			break;
 		}
 		if (rotation != 0)
@@ -440,8 +438,8 @@ public class PdfSignatureAppearance {
 			String text;
 			if (layer2Text == null) {
 				StringBuffer buf = new StringBuffer();
-				buf.append("Digitally signed by ").append(
-						PdfPKCS7.getSubjectFields((X509Certificate) certChain[0]).getField("CN")).append('\n');
+				buf.append("Digitally signed by ")
+						.append(PdfPKCS7.getSubjectFields((X509Certificate) certChain[0]).getField("CN")).append('\n');
 				SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z");
 				buf.append("Date: ").append(sd.format(signDate.getTime()));
 				if (reason != null)
@@ -483,13 +481,12 @@ public class PdfSignatureAppearance {
 					|| (render == SignatureRenderGraphicAndDescription && this.signatureGraphic != null)) {
 				// origin is the bottom-left
 				signatureRect = new Rectangle(MARGIN, MARGIN, rect.getWidth() / 2 - MARGIN, rect.getHeight() - MARGIN);
-				dataRect = new Rectangle(rect.getWidth() / 2 + MARGIN / 2, MARGIN, rect.getWidth() - MARGIN / 2, rect
-						.getHeight()
-						- MARGIN);
+				dataRect = new Rectangle(rect.getWidth() / 2 + MARGIN / 2, MARGIN, rect.getWidth() - MARGIN / 2,
+						rect.getHeight() - MARGIN);
 
 				if (rect.getHeight() > rect.getWidth()) {
-					signatureRect = new Rectangle(MARGIN, rect.getHeight() / 2, rect.getWidth() - MARGIN, rect
-							.getHeight());
+					signatureRect = new Rectangle(MARGIN, rect.getHeight() / 2, rect.getWidth() - MARGIN,
+							rect.getHeight());
 					dataRect = new Rectangle(MARGIN, MARGIN, rect.getWidth() - MARGIN, rect.getHeight() / 2 - MARGIN);
 				}
 			} else {
@@ -652,8 +649,8 @@ public class PdfSignatureAppearance {
 				size = (min + max) / 2;
 				ct = new ColumnText(null);
 				font.setSize(size);
-				ct.setSimpleColumn(new Phrase(text, font), rect.getLeft(), rect.getBottom(), rect.getRight(), rect
-						.getTop(), size, Element.ALIGN_LEFT);
+				ct.setSimpleColumn(new Phrase(text, font), rect.getLeft(), rect.getBottom(), rect.getRight(),
+						rect.getTop(), size, Element.ALIGN_LEFT);
 				ct.setRunDirection(runDirection);
 				status = ct.go(true);
 				if ((status & ColumnText.NO_MORE_TEXT) != 0) {
@@ -929,16 +926,16 @@ public class PdfSignatureAppearance {
 	 * should be byte_size*2+2.
 	 * 
 	 * @param exclusionSizes
-	 *            a <CODE>HashMap</CODE> with names and sizes to be excluded in
-	 *            the signature calculation. The key is a <CODE>PdfName</CODE>
-	 *            and the value an <CODE>Integer</CODE>. At least the
+	 *            a <CODE>Map</CODE> with names and sizes to be excluded in the
+	 *            signature calculation. The key is a <CODE>PdfName</CODE> and
+	 *            the value an <CODE>Integer</CODE>. At least the
 	 *            <CODE>PdfName.CONTENTS</CODE> must be present
 	 * @throws IOException
 	 *             on error
 	 * @throws DocumentException
 	 *             on error
 	 */
-	public void preClose(HashMap exclusionSizes) throws IOException, DocumentException {
+	public void preClose(Map exclusionSizes) throws IOException, DocumentException {
 		if (preClosed)
 			throw new DocumentException("Document already pre closed.");
 		preClosed = true;
