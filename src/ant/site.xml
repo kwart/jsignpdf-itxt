@@ -2,7 +2,7 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!-- iText, a JAVA - PDF library                                      -->
-<!-- $Id: site.xml,v 1.1 2010/04/14 17:50:30 kwart Exp $         -->
+<!-- $Id: site.xml,v 1.2 2011/11/12 06:35:56 kwart Exp $         -->
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <project name="iText.site" default="help" basedir=".">
@@ -83,8 +83,6 @@
         	<link href="http://www.bouncycastle.org/docs/docs1.4/" />
         	<link href="http://www.dom4j.org/apidocs/" />
         	<link href="https://pdf-renderer.dev.java.net/nonav/demos/latest/javadoc/" />
-        	<header>&lt;a href="http://www.1t3xt.com/docs/book.php" target="_blank"&gt;&lt;img src="http://www.1t3xt.com/img/book/lowagie_3d.jpg" border="0" /&gt;&lt;/a&gt;</header>
-			<footer>Hosted by &lt;a href="http://www.hostbasket.com/"&gt;Hostbasket&lt;/a&gt;</footer>
         </javadoc>
     </target>
 
