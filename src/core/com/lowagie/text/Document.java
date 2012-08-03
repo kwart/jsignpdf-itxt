@@ -71,8 +71,7 @@ import java.util.Iterator;
  * <LI>When you change the header/footer on a certain page, this will be
  * effective starting on the next page.
  * <LI>After closing the document, every listener (as well as its <CODE>
- * OutputStream</CODE>
- * ) is closed too.
+ * OutputStream</CODE> ) is closed too.
  * </OL>
  * Example: <BLOCKQUOTE>
  * 
@@ -115,7 +114,7 @@ public class Document implements DocListener {
 	private static final String RELEASE = "@RELEASENUMBER@";
 
 	/** Version info. */
-	private static final String PRODUCT_VERSION = PRODUCT + " " + RELEASE;
+	private static final String PRODUCT_VERSION = PRODUCT + " " + RELEASE + " based on iText 2.1.7";
 
 	/**
 	 * Allows the pdf documents to be produced without compression for debugging
@@ -267,8 +266,7 @@ public class Document implements DocListener {
 	 * @param element
 	 *            the <CODE>Element</CODE> to add
 	 * @return <CODE>true</CODE> if the element was added, <CODE>false
-	 *         </CODE> if
-	 *         not
+	 *         </CODE> if not
 	 * @throws DocumentException
 	 *             when a document isn't open yet, or has been closed
 	 */
